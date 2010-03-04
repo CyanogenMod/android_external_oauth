@@ -31,7 +31,10 @@ import net.oauth.OAuthConsumer;
 import net.oauth.OAuthException;
 import net.oauth.OAuthMessage;
 import net.oauth.OAuthProblemException;
-import org.apache.commons.codec.binary.Base64;
+// BEGIN android-changed
+// import org.apache.commons.codec.binary.Base64;
+import android.util.base64.Base64;
+// END android-changed
 
 /**
  * A pair of algorithms for computing and verifying an OAuth digital signature.
@@ -190,15 +193,15 @@ public abstract class OAuthSignatureMethod {
         return OAuth.formEncode(getParameters(p));
     }
 
+    // BEGIN android-changed
     public static byte[] decodeBase64(String s) {
-        return BASE64.decode(s.getBytes());
+        return Base64.decode(s, Base64.DEFAULT);
     }
 
     public static String base64Encode(byte[] b) {
-        return new String(BASE64.encode(b));
+        return Base64.encodeToString(b, Base64.DEFAULT);
     }
-
-    private static final Base64 BASE64 = new Base64();
+    // END android-changed
 
     public static OAuthSignatureMethod newSigner(OAuthMessage message,
             OAuthAccessor accessor) throws IOException, OAuthException {

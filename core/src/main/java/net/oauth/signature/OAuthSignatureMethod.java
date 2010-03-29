@@ -33,7 +33,7 @@ import net.oauth.OAuthMessage;
 import net.oauth.OAuthProblemException;
 // BEGIN android-changed
 // import org.apache.commons.codec.binary.Base64;
-import android.util.base64.Base64;
+import android.util.Base64;
 // END android-changed
 
 /**
